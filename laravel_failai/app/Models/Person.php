@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -18,8 +19,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property User $user
  * @property int $address_id
  * @property Address $address
- * @property string $created_at
- * @property string $updated_at
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
  */
 class Person extends Model
 {
@@ -46,6 +47,10 @@ class Person extends Model
     public function address(): BelongsTo
     {
         return $this->belongsTo(Address::class);
+    }
+    public function addresses(): HasMany
+    {
+        return $this->hasMany(Address::class);
     }
 
     public function orders(): HasMany
