@@ -22,7 +22,9 @@
                 <th>Gatvė</th>
                 <th>Namo numeris</th>
                 <th>Buto numeris</th>
+                <th>Užsakymo būklė</th>
                 <th>Tipo pavadinimas</th>
+                <th>Papildoma informacija</th>
                 <th>Vartotojo ID</th>
                 <th>Veiksmai</th>
             </tr>
@@ -38,7 +40,9 @@
                     <td>{{ $address->street }}</td>
                     <td>{{ $address->house_number }}</td>
                     <td>{{ $address->apartment_number }}</td>
+                    <td>{{ $address->state }}</td>
                     <td>{{ $address->type }}</td>
+                    <td>{{ $address->additional_info }}</td>
                     <td>{{ $address->user_id }}</td>
                     <td>
                         <a href="{{ route('addresses.edit', $address->id) }}" class="btn btn-sm btn-primary">Redaguoti</a>

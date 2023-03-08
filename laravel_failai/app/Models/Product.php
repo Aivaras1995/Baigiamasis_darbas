@@ -21,7 +21,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string $color
  * @property string $size
  * @property int $price
- * @property int $status_id
  * @property Status $status
  * @property Carbon $created_at
  * @property Carbon $updated_at
@@ -39,7 +38,7 @@ class Product extends Model
         'color',
         'size',
         'price',
-        'status_id',
+        'status',
     ];
     public function category(): BelongsTo
     {

@@ -1,92 +1,68 @@
 <style>
-/* Navbar */
-nav {
-background-color: #333;
-color: #fff;
-display: flex;
-justify-content: space-between;
-align-items: center;
-padding: 1rem;
+/* CSS stiliaus kodas */
+
+/* Nustatome šviesiai mėlyną pagrindinę spalvą */
+
+/* Full-width input fields */
+input[type=text] {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
 }
 
-nav ul {
-list-style: none;
-display: flex;
+label {
+    display: block; /* rodyti žymę kaip bloką, kad jos tekstas eitų ant kitos eilutės */
+    margin-bottom: 6px; /* nustatyti atstumą tarp žymės ir kito elemento */
+    font-size: 1rem; /* nustatyti teksto dydį */
 }
 
-nav ul li {
-margin-left: 1rem;
+form {
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
 
-nav ul li a {
-color: #fff;
-text-decoration: none;
+div {
+    margin-bottom: 10px;
 }
 
-/* Main content */
-.main-content {
-max-width: 1200px;
-margin: 0 auto;
-padding: 1rem;
+label {
+    display: block;
+    font-weight: bold;
 }
 
-.main-content h1 {
-font-size: 2rem;
-margin-bottom: 1rem;
+input[type="text"],
+select,
+textarea {
+    width: 100%;
+    padding: 5px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
 }
 
-.address-list {
-margin-top: 2rem;
+input[type="text"]:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: #007bff;
 }
 
-.address-list table {
-border-collapse: collapse;
-width: 100%;
+button[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    padding: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
 }
 
-.address-list th,
-.address-list td {
-padding: 0.5rem;
-text-align: left;
-border: 1px solid #ccc;
-}
-
-.address-list th {
-background-color: #f2f2f2;
-font-weight: bold;
-}
-
-.address-list td:last-child {
-text-align: center;
-}
-
-.address-list td a {
-color: #fff;
-background-color: #007bff;
-border-radius: 0.25rem;
-padding: 0.5rem 1rem;
-text-decoration: none;
-}
-
-.address-list td a:hover {
-background-color: #0069d9;
-}
-
-.address-list form {
-display: inline-block;
-margin-left: 1rem;
-}
-
-.address-list form button {
-color: #fff;
-background-color: #dc3545;
-border-radius: 0.25rem;
-padding: 0.5rem 1rem;
-border: none;
-cursor: pointer;
-}
-
-.address-list form button:hover {
-background-color: #c82333;
+button[type="submit"]:hover {
+    background-color: #0062cc;
 }
 </style>

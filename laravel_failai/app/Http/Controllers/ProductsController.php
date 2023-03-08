@@ -3,6 +3,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductRequest;
 use App\Models\Product;
+use App\Models\Category;
+use App\Models\Status;
 use Illuminate\Http\Request;
 class ProductsController extends Controller
 {
@@ -10,12 +12,14 @@ class ProductsController extends Controller
     {
         $products =  Product::query()->with(['category', 'status'])->get();
 
-        return view('products.index', compact('products'));
+        return view('admin.products.index', compact('products'));
     }
 
     public function create()
     {
-        return view('products.create');
+        $categories = Category::all();
+        $statuses = Status::all();
+        return view('admin.products.create', compact('categories', 'statuses'));
     }
     public function store(ProductRequest $request)
     {
@@ -25,7 +29,7 @@ class ProductsController extends Controller
 
     public function show(Product $product)
     {
-        return view('products.show', ['product' => $product]);
+        return view('admin.products.show', ['product' => $product]);
 
     }
 

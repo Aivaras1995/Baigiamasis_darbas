@@ -15,6 +15,8 @@
 <body>
 <div class="main_grid">
     <div class="lg:px-8 justify-center">
+        @include('public.layouts.flash-message')
+
         @yield('content', 'Default page content')
     </div>
     <br>
