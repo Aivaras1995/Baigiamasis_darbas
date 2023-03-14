@@ -2,13 +2,11 @@
 
 @section('title', 'Admin')
 
-@section('content')
+@section('admin_content')
     <div class="main_grid">
-        @include('admin.layouts.header')
         <div class="lg:px-8 justify-center">
             @yield('content', 'Default content')
         </div>
         <br>
-        @include('admin.layouts.footer')
     </div>
 @endsection

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CategoryRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
@@ -9,50 +10,35 @@ class CategoriesController extends Controller
 {
     public function index()
     {
-        return view('categories.index');
+        $categories = Category::all();
+
+        return view('admin.categories.index', compact(var_name: 'categories'));
     }
 
     public function create()
     {
-        return view('categories.create');
+        return view('admin.categories.create');
     }
 
-    public function store(Request $request)
+    public function store(CategoryRequest $request)
     {
-        $request->validate([
-            'name' => ['required', 'string', 'min:3', 'max:255'],
-            'slug' => ['required', 'string', 'min:3', 'max:255'],
-            'description' => ['nullable', 'string', 'min:3', 'max:255'],
-            'image' => ['nullable'],
-            'status_id' => ['required', 'integer', 'exists:statuses,id'],
-            'parent_id' => ['nullable', 'integer', 'exists:categories,id'],
-            'sort_order' => ['nullable', 'integer', 'min:0'],
-        ]);
+
         $categories = Category::create($request->all());
         return redirect()->route('categories.show', $categories);
     }
 
-    public function show(Category $categories)
+    public function show(Category $category)
     {
-        return $categories;
+        return view('admin.categories.show', ['category' => $category]);
     }
 
     public function edit(Category $categories)
     {
-        return view('categories.edit', compact('categories'));
+        return view('admin.categories.edit', compact('categories'));
     }
 
-    public function update(Request $request, Category $categories)
+    public function update(CategoryRequest $request, Category $categories)
     {
-        $request->validate([
-            'name' => ['required', 'string', 'min:3', 'max:255'],
-            'slug' => ['required', 'string', 'min:3', 'max:255'],
-            'description' => ['nullable', 'string', 'min:3', 'max:255'],
-            'image' => ['nullable'],
-            'status_id' => ['required', 'integer', 'exists:statuses,id'],
-            'parent_id' => ['nullable', 'integer', 'exists:categories,id'],
-            'sort_order' => ['nullable', 'integer', 'min:0'],
-        ]);
         $categories->update($request->all());
         return redirect()->route('categories.show', $categories);
     }

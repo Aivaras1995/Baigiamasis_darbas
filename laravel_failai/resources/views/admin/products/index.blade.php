@@ -3,6 +3,8 @@
 @section('title', 'Products')
 
 @section('content')
+    @include('admin.layouts.styles')
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
     <div class="row">
         <div class="col s12">
             <h1>Products</h1>

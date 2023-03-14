@@ -2,49 +2,46 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+    public function dashboard()
+    {
+        $users = User::all();
+        return view('dashboard', ['users' => $users]);
+    }
     public function index()
     {
-        return view('users.index');
+        $users = User::all();
+        return view('admin.users.index', compact(var_name: 'users'));
     }
 
     public function create()
     {
-        return view('users.create');
+        return view('admin.users.create');
     }
 
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
-        $request->validate([
-            'name' => ['required', 'string', 'min:3', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
         $user = User::create($request->all());
         return redirect()->route('users.show', $user);
     }
 
     public function show(User $user)
     {
-        return $user;
+        return view('admin.users.show', ['user' => $user]);
     }
 
     public function edit(User $user)
     {
-        return view('users.edit', compact('user'));
+        return view('admin.users.edit', compact('user'));
     }
 
-    public function update(Request $request, User $user)
+    public function update(UserRequest $request, User $user)
     {
-        $request->validate([
-            'name' => ['required', 'string', 'min:3', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
         $user->update($request->all());
         return redirect()->route('users.show', $user);
     }

@@ -1,56 +1,81 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Administratoriaus puslapis</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
-    <style>
-        /* CSS stiliai */
-        .menu {
-            background-color: #333;
-            overflow: hidden;
-        }
-        .menu a {
-            float: left;
-            color: white;
-            text-align: center;
-            padding: 14px 16px;
-            text-decoration: none;
-            font-size: 17px;
-        }
-        .menu a:hover {
-            background-color: #ddd;
-            color: black;
-        }
-    </style>
-</head>
-<body>
-<div class="alert alert-info mb-0 dismissable">
-    Sveiki prisijungę, administratoriau!
-</div>
-<div class="menu">
-    <a href="{{route('dashboard')}}" class="btn btn-primary">Pradžia</a>
-    <a href="{{route('addresses.index')}}" class="btn btn-primary">Adresai</a>
-    <a href="{{route('categories.index')}}" class="btn btn-primary">Kategorijos</a>
-    <a href="{{route('orders.index')}}" class="btn btn-primary">Užsakymai</a>
-    <a href="{{route('payments.index')}}" class="btn btn-primary">Mokėjimai</a>
-    <a href="{{route('persons.index')}}" class="btn btn-primary">Asmenys</a>
-    <a href="{{route('products.index')}}" class="btn btn-primary">Produktai</a>
-    <a href="{{route('statuses.index')}}" class="btn btn-primary">Adresai</a>
-    <a href="{{route('users.index')}}" class="btn btn-primary">Vartotojai</a>
-</div>
-<div class="container mt-4">
-    @yield('content')
-</div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
-<script>
-    // Išnykimo funkcija
-    function dismissAlert() {
-        $('.dismissable').fadeOut();
-    }
+@extends('admin.layouts.main')
+@include('admin.layouts.styles')
+@php
+    $users = \App\Models\User::all();
+    $categories = \App\Models\Category::all();
+    $products = \App\Models\Product::all();
+@endphp
 
-    // Pranešimo automatinis išnykimas po 5 sekundžių
-    setTimeout(dismissAlert, 5000);
-</script>
-</body>
-</html>
+@section('title', 'Dashboard')
+
+@include('admin.layouts.header')
+
+@section('content')
+
+    <div class="container"></div>
+    <h2>Vartotojai</h2>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Vardas</th>
+            <th>El. paštas</th>
+            <th>Registracijos data</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach ($users as $user)
+            <tr>
+                <td>{{ $user->id }}</td>
+                <td>{{ $user->name }}</td>
+                <td>{{ $user->email }}</td>
+                <td>{{ $user->created_at }}</td>
+            </tr>
+        @endforeach
+        </tbody>
+    </table>
+    <h2>Produktai</h2>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Pavadinimas</th>
+            <th>Kaina</th>
+            <th>Dydis</th>
+            <th>Aprašymas</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach ($products as $product)
+            <tr>
+                <td>{{ $product->id }}</td>
+                <td>{{ $product->name }}</td>
+                <td>{{ $product->price }}</td>
+                <td>{{ $product->size }}</td>
+                <td>{{ $product->description }}</td>
+            </tr>
+        @endforeach
+        </tbody>
+    </table>
+
+    <h2>Kategorijos</h2>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Pavadinimas</th>
+            <th>Kaina</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach ($categories as $category)
+            <tr>
+                <td>{{ $category->id }}</td>
+                <td>{{ $category->name }}</td>
+                <td>{{ $category->description }}</td>
+            </tr>
+        @endforeach
+    </table>
+    @include('admin.layouts.footer')
+
+@endsection

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PaymentRequest;
 use App\Models\Payment;
 use Illuminate\Http\Request;
 
@@ -9,38 +10,33 @@ class PaymentController extends Controller
 {
     public function index()
     {
-        return view('payment.index');
+        $payments = Payment::all();
+        return view('admin.payment.index', compact(var_name: 'payments'));
     }
 
     public function create()
     {
-        return view('payment.create');
+        return view('admin.payment.create');
     }
 
-    public function store(Request $request)
+    public function store(PaymentRequest $request)
     {
-        $request->validate([
-            'name' => ['required', 'string', 'min:3', 'max:255'],
-        ]);
         $payment = Payment::create($request->all());
-        return redirect()->route('payment.show', $payment);
+        return redirect()->route('payments.show', $payment);
     }
 
     public function show(Payment $payment)
     {
-        return $payment;
+        return view('admin.payment.show', ['payment' => $payment]);
     }
 
     public function edit(Payment $payment)
     {
-        return view('payment.edit', compact('payment'));
+        return view('admin.payment.edit', compact('payment'));
     }
 
-    public function update(Request $request, Payment $payment)
+    public function update(PaymentRequest $request, Payment $payment)
     {
-        $request->validate([
-            'name' => ['required', 'string', 'min:3', 'max:255'],
-        ]);
         $payment->update($request->all());
         return redirect()->route('payment.show', $payment);
     }

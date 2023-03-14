@@ -1,9 +1,10 @@
 @extends('public.layouts.main')
 
 @section('title', 'Produkto sukūrimo forma')
-@extends('admin.layouts.styles')
 
 @section('content')
+    @include('admin.layouts.styles')
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
     <div class="container">
         <h2>Produkto sukūrimo forma</h2>
         <form method="POST" action="{{ route('products.store') }}">

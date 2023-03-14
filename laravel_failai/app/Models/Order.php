@@ -25,14 +25,11 @@ class Order extends Model
 {
     use SoftDeletes;
 
-    protected  $guarded = [
-        'user_id',
-        'status_id',
-    ];
-
     protected $fillable = [
         'shipping_address_id',
         'billing_address_id',
+        'user_id',
+        'status_id',
     ];
     public function user(): BelongsTo
     {

@@ -1,11 +1,10 @@
 @extends('public.layouts.main')
 
 @section('title', 'Adreso kūrimo forma')
-
 @section('content')
     <form action="{{route('addresses.store')}}" method="post">
-
-        @extends('admin.layouts.styles')
+        @include('admin.layouts.styles')
+        <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
         <fieldset>
             <legend>Address Details</legend>
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\OrderRequest;
 use App\Models\Order;
 use Illuminate\Http\Request;
 
@@ -9,51 +10,40 @@ class OrderController extends Controller
 {
     public function index()
     {
-        return view('order.index');
+        $orders = Order::all();
+        return view('admin.order.index', compact(var_name: 'orders'));
     }
 
     public function create()
     {
-        return view('order.create');
+        return view('admin.order.create');
     }
 
-    public function store(Request $request)
+    public function store(OrderRequest $request)
     {
-        $request->validate([
-            'user_id' => ['required', 'exists:users,id'],
-            'shipping_address_id' => ['required', 'exists:addresses,id'],
-            'billing_address_id' => ['required', 'exists:addresses,id'],
-            'status_id' => ['required', 'exists:statuses,id'],
-        ]);
         $order = Order::create($request->all());
-        return redirect()->route('order.show', $order);
+        return redirect()->route('orders.show', $order);
     }
 
     public function show(Order $order)
     {
-        return $order;
+        return view('admin.order.show', ['order' => $order]);
     }
 
     public function edit(Order $order)
     {
-        return view('order.edit', compact('order'));
+        return view('admin.order.edit', compact('order'));
     }
 
-    public function update(Request $request, Order $order)
+    public function update(OrderRequest $request, Order $order)
     {
-        $request->validate([
-            'user_id' => ['required', 'exists:users,id'],
-            'shipping_address_id' => ['required', 'exists:addresses,id'],
-            'billing_address_id' => ['required', 'exists:addresses,id'],
-            'status_id' => ['required', 'exists:statuses,id'],
-        ]);
         $order->update($request->all());
-        return redirect()->route('order.show', $order);
+        return redirect()->route('orders.show', $order);
     }
 
     public function destroy(Order $order)
     {
         $order->delete();
-        return redirect()->route('order.index');
+        return redirect()->route('orders.index');
     }
 }

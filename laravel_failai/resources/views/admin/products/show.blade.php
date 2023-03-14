@@ -2,6 +2,8 @@
 
 @section('title', 'Naujas produktas')
 @section('content')
+    @include('admin.layouts.styles')
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
 <h1>Produkto informacija</h1>
 
 <p>Pavadinimas: {{ $product->name }}</p>

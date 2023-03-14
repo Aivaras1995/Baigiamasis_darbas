@@ -1,58 +1,43 @@
 <header>
-    <div class="navbar bg-base-100 drop-shadow-xl">
-        <div class="flex-1">
-            <a class="btn btn-ghost normal-case text-xl">E-Shop administration</a>
-        </div>
-        <div class="flex-none">
-            <ul class="menu menu-horizontal px-1">
-                @auth
-                    <li><a href="{{route('dashboard')}}">{{__('general.meniu.home')}}</a></li>
-                    <li><a href="{{route('orders.index')}}">{{__('general.meniu.orders')}}</a></li>
-                    <li><a href="{{route('products.index')}}">{{__('general.meniu.products')}}</a></li>
-                    <li><a href="{{route('categories.index')}}">{{__('general.meniu.categories')}}</a></li>
-                    <li><a href="{{route('payments.index')}}">{{__('general.meniu.paymentTypes')}}</a></li>
-                    <li><a href="{{route('statuses.index')}}">{{__('general.meniu.statuses')}}</a></li>
-                    <li><a href="{{route('users.index')}}">{{__('general.meniu.users')}}</a></li>
-                    <li><a href="{{route('persons.index')}}">{{__('general.meniu.persons')}}</a></li>
-                    <li><a href="{{route('addresses.index')}}">{{__('general.meniu.addresses')}}</a></li>
-                    <li>
-                        <div>
-                            @if(app()->getLocale() == 'en')
-                                <a href="{{url()->current()}}?lang=lt">
-                                    <img src="{{asset('/img/LT-Flag.svg')}}" alt="LT" width="32">
-                                </a>
-                            @else
-                                <a href="{{url()->current()}}?lang=en">
-                                    <img src="{{asset('/img/GB-Flag.svg')}}" alt="LT" width="32">
-                                </a>
-                            @endif
-                        </div>
-                    </li>
-                @endauth
-            </ul>
-        </div>
-        @auth
-            <div class="flex-none dropdown dropdown-end">
-                <label tabindex="0" class="btn btn-ghost btn-circle avatar placeholder ">
-
-                </label>
-                <ul tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-                    <li>
-                        <a class="justify-between" href="{{route('profile.edit')}}">
-                            {{ __('Edit profile') }}
-                            <span class="badge">New</span>
-                        </a>
-                    </li>
-                    <li>
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-                            <a href="{{route('logout')}}" onclick="event.preventDefault(); this.closest('form').submit();">
-                                {{ __('Log Out') }}
-                            </a>
-                        </form>
-                    </li>
-                </ul>
-            </div>
-        @endauth
+    <div class="logo">
+        <img src="https://www.getfit.lt/wp-content/uploads/2016/09/Sportuok.lt_.jpeg"
+             alt="Logo">
     </div>
+    <div class="welcome-message">
+        <h1>Howdy, administrator!</h1>
+    </div>
+    @auth
+
+    <nav>
+            <label tabindex="0" class="btn btn-ghost btn-circle avatar placeholder ">
+                @if(app()->getLocale() == 'en')
+                    <a href="{{url()->current()}}?lang=lt">
+                        <img src="{{asset('/img/LT-Flag.svg')}}" alt="LT" width="32">
+                    </a>
+                @else
+                    <a href="{{url()->current()}}?lang=en">
+                        <img src="{{asset('/img/GB-Flag.svg')}}" alt="LT" width="32">
+                    </a>
+                @endif
+
+                <a href="{{route('dashboard')}}" class="btn btn-primary">Pradžia</a>
+                <a href="{{route('addresses.index')}}" class="btn btn-primary">Adresai</a>
+                <a href="{{route('categories.index')}}" class="btn btn-primary">Kategorijos</a>
+                <a href="{{route('orders.index')}}" class="btn btn-primary">Užsakymai</a>
+                <a href="{{route('payments.index')}}" class="btn btn-primary">Mokėjimai</a>
+                <a href="{{route('persons.index')}}" class="btn btn-primary">Asmenys</a>
+                <a href="{{route('products.index')}}" class="btn btn-primary">Produktai</a>
+                <a href="{{route('statuses.index')}}" class="btn btn-primary">Statusai</a>
+                <a href="{{route('users.index')}}" class="btn btn-primary">Vartotojai</a>
+                <a href="{{route('profile.edit')}}" class="btn btn-primary">Profilis</a>
+                <a href="{{route('logout')}}" class="btn btn-primary">Atsijungti</a>
+
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                </form>
+
+            </label>
+        </div>
+    @endauth
+    </nav>
 </header>

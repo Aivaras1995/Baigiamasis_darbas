@@ -1,7 +1,8 @@
 @extends('layouts.admin.main')
 
 @section('title', 'Naujas adresas')
-
+@include('admin.layouts.styles')
+<link rel="stylesheet" href="{{ asset('css/styles.css') }}">
 @section('content')
     <h1>Adreso informacija</h1>
 
