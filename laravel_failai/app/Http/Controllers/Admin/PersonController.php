@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\PersonRequest;
+use App\Http\Controllers\Controller;
 use App\Managers\PersonManager;
 use App\Models\Person;
 use Illuminate\Http\Request;

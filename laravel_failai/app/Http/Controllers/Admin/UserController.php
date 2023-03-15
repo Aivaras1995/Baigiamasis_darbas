@@ -1,18 +1,16 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\UserRequest;
+use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-    public function dashboard()
-    {
-        $users = User::all();
-        return view('dashboard', ['users' => $users]);
-    }
+
     public function index()
     {
         $users = User::all();
@@ -26,8 +24,14 @@ class UserController extends Controller
 
     public function store(UserRequest $request)
     {
-        $user = User::create($request->all());
-        return redirect()->route('users.show', $user);
+        $user = new User();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = $request->password;
+        if (Auth::user()->role === User::ROLE_ADMIN){
+            $user->role = $request->role;
+        }
+        $user->save();        return redirect()->route('users.show', $user);
     }
 
     public function show(User $user)
@@ -42,7 +46,17 @@ class UserController extends Controller
 
     public function update(UserRequest $request, User $user)
     {
-        $user->update($request->all());
+        $data = $request->all();
+        if ($request->password === null){
+            unset($data['password']);
+        }
+
+        $user->name = $request->name;
+        $user->email = $request->email;
+        if (Auth::user()->role === User::ROLE_ADMIN){
+            $user->role = $request->role;
+        }
+        $user->save();
         return redirect()->route('users.show', $user);
     }
 

@@ -1,17 +1,19 @@
 <?php
 
-use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\Admin\ProductsController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\CategoriesController;
-use App\Http\Controllers\OrderController;
-use App\Http\Controllers\PersonController;
-use App\Http\Controllers\PaymentController;
-use App\Http\Controllers\StatusController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\AddressController;
+use App\Http\Controllers\Admin\CategoriesController;
+use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Admin\PersonController;
+use App\Http\Controllers\Admin\PaymentController;
+use App\Http\Controllers\Admin\StatusController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\AddressController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UsersController;
 use App\Http\Controllers\Admin\DashboardController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\IsPersonnel;
 use Illuminate\Http\Request;
 
 /*
@@ -25,8 +27,11 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/', HomeController::class);
+Route::get('/', HomeController::class)->name('home');
 
+Route::group(['middleware' => ['auth', 'role:user']], function () {
+    Route::get('/user/dashboard', UsersController::class)->name('user.dashboard');
+});
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -37,7 +42,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-Route::group(['prefix' => 'admin'], function () {
+Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'verified', IsPersonnel::class]], function () {
     Route::get('/', DashBoardController::class)->name('admin.dashboard');
     Route::resources([
         'products' => ProductsController::class,

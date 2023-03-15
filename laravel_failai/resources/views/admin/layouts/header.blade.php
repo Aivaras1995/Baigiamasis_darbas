@@ -30,14 +30,12 @@
                 <a href="{{route('statuses.index')}}" class="btn btn-primary">Statusai</a>
                 <a href="{{route('users.index')}}" class="btn btn-primary">Vartotojai</a>
                 <a href="{{route('profile.edit')}}" class="btn btn-primary">Profilis</a>
-                <a href="{{route('logout')}}" class="btn btn-primary">Atsijungti</a>
-
-                    <form method="POST" action="{{ route('logout') }}">
-                        @csrf
-                </form>
-
+                <button type="submit" form="logout-form" class="btn btn-primary">Atsijungti</button>
             </label>
-        </div>
-    @endauth
     </nav>
+        <form id="logout-form" method="POST" action="{{ route('logout') }}">
+            @csrf
+        </form>
+    @endauth
+
 </header>

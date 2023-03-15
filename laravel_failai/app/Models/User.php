@@ -20,6 +20,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property string $email
  * @property Carbon $email_verified_at
  * @property string $password
+ * @property string $role
  * @property string $remember_token
  * @property Carbon $created_at
  * @property Carbon $updated_at
@@ -28,7 +29,24 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
+    public const ROLE_ADMIN   = 'admin';
+    public const ROLE_USER    = 'user';
+    public const ROLE_MANAGER = 'manager';
+    public const ROLE_PM      = 'prod_manager';
 
+    public const ROLES = [
+        self::ROLE_ADMIN,
+        self::ROLE_USER,
+        self::ROLE_MANAGER,
+        self::ROLE_PM,
+    ];
+
+    public const ROLE_DEFAULT = self::ROLE_USER;
+
+
+    protected  $guarded = [
+        'role',
+    ];
     /**
      * The attributes that are mass assignable.
      *
@@ -70,5 +88,25 @@ class User extends Authenticatable
     public function addresses(): HasMany
     {
         return $this->hasMany(Address::class);
+    }
+    public function isAdmin(): bool
+    {
+        return $this->role === self::ROLE_ADMIN;
+    }
+
+    public function isManager(): bool
+    {
+        return $this->role === self::ROLE_MANAGER;
+    }
+
+    public function isPM(): bool
+    {
+        return $this->role === self::ROLE_PM;
+    }
+
+    public function isPersonnel(): bool
+    {
+        return in_array($this->role,
+            [self::ROLE_ADMIN, self::ROLE_MANAGER, self::ROLE_PM]);
     }
 }
