@@ -12,11 +12,11 @@
             <label tabindex="0" class="btn btn-ghost btn-circle avatar placeholder ">
                 @if(app()->getLocale() == 'en')
                     <a href="{{url()->current()}}?lang=lt">
-                        <img src="{{asset('/img/LT-Flag.svg')}}" alt="LT" width="32">
+                        <img src="{{asset('/img/Lt-flag.png')}}" alt="LT" width="32">
                     </a>
                 @else
                     <a href="{{url()->current()}}?lang=en">
-                        <img src="{{asset('/img/GB-Flag.svg')}}" alt="LT" width="32">
+                        <img src="{{asset('/img/Gb-flag.png')}}" alt="EN" width="32">
                     </a>
                 @endif
 
@@ -30,7 +30,7 @@
                 <a href="{{route('statuses.index')}}" class="btn btn-primary">Statusai</a>
                 <a href="{{route('users.index')}}" class="btn btn-primary">Vartotojai</a>
                 <a href="{{route('profile.edit')}}" class="btn btn-primary">Profilis</a>
-                <button type="submit" form="logout-form" class="btn btn-primary">Atsijungti</button>
+                <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="btn btn-primary">Atsijungti</a>
             </label>
     </nav>
         <form id="logout-form" method="POST" action="{{ route('logout') }}">

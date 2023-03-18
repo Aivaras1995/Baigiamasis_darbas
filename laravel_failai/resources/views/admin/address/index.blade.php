@@ -2,9 +2,11 @@
 
 @section('content')
 
-    <h1>Adresų sąrašas</h1>
+    <h2>Adresų sąrašas</h2>
 
     @include('admin.layouts.styles')
+    @include('admin.layouts.button_styles')
+
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
 
     <div class="address-list">
@@ -14,7 +16,7 @@
         <table class="table">
             <thead>
             <tr>
-                <th>#</th>
+                <th>ID</th>
                 <th>Pavadinimas</th>
                 <th>Šalis</th>
                 <th>Miestas</th>
@@ -45,17 +47,25 @@
                     <td>{{ $address->additional_info }}</td>
                     <td>{{ $address->user_id }}</td>
                     <td>
-                        <a href="{{ route('addresses.edit', $address->id) }}" class="btn btn-sm btn-primary">Redaguoti</a>
-                        <form action="{{ route('addresses.destroy', $address->id) }}" method="POST" class="d-inline">
+                        <form action="{{route('addresses.show', $address->id)}}" method="get" class="d-inline">
+                            @csrf
+                            <button type="submit" class="btn btn-secondary">Žiūrėti</button>
+                        </form>
+                        <form action="{{route('addresses.edit', $address->id)}}" method="get" class="d-inline">
+                            @csrf
+                            <button type="submit" class="btn btn-primary">Atnaujinti</button>
+                        </form>
+                        <form action="{{route('addresses.destroy', $address->id)}}" method="post" class="d-inline">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-sm btn-danger">Trinti</button>
+                            <button type="submit" class="btn btn-danger">Ištrinti</button>
                         </form>
                     </td>
                 </tr>
             @endforeach
             </tbody>
         </table>
+    </div>
 @endsection
 
 

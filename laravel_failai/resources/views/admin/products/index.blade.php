@@ -1,21 +1,22 @@
 @extends('layouts.admin.main')
 
-@section('title', 'Products')
+@section('title', 'Sporto prekių sąrašas')
 
 @section('content')
     @include('admin.layouts.styles')
+    @include('admin.layouts.button_styles')
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
     <div class="row">
         <div class="col s12">
-            <h1>Products</h1>
-            <a href="{{route('products.create')}}" class="btn btn-primary">Create</a>
+            <h2>Sporto prekės</h2>
+            <a href="{{route('products.create')}}" class="btn btn-primary">Sukurti naujo produkto įrašą</a>
             <table class="table">
                 <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Title</th>
-                    <th>Price</th>
-                    <th>Actions</th>
+                    <th>Pavadinimas</th>
+                    <th>Kaina</th>
+                    <th>Veiksmai</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -25,11 +26,18 @@
                         <td>{{$product->name}}</td>
                         <td>{{$product->price}}</td>
                         <td>
-                            <a href="{{route('products.edit', $product->id)}}" class="btn btn-primary">Edit</a>
-                            <form action="{{route('products.destroy', $product->id)}}" method="post">
+                            <form action="{{route('products.show', $product->id)}}" method="get" class="d-inline">
+                                @csrf
+                                <button type="submit" class="btn btn-secondary">Žiūrėti</button>
+                            </form>
+                            <form action="{{route('products.edit', $product->id)}}" method="get" class="d-inline">
+                                @csrf
+                                <button type="submit" class="btn btn-primary">Atnaujinti</button>
+                            </form>
+                            <form action="{{route('products.destroy', $product->id)}}" method="post" class="d-inline">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger">Delete</button>
+                                <button type="submit" class="btn btn-danger">Ištrinti</button>
                             </form>
                         </td>
                     </tr>

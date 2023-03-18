@@ -11,6 +11,9 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\AddressController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\Admin\DashboardController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\IsPersonnel;
@@ -30,8 +33,12 @@ use Illuminate\Http\Request;
 Route::get('/', HomeController::class)->name('home');
 
 Route::group(['middleware' => ['auth', 'role:user']], function () {
-    Route::get('/user/dashboard', UsersController::class)->name('user.dashboard');
+    Route::get('/user_dashboard', [UsersController::class,'user_dashboard'])->name('user_dashboard');
 });
+Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+Route::post('/cart/{product}', [CartController::class, 'store'])->name('cart.store');
+Route::patch('/cart/{cartItem}', [CartController::class, 'update'])->name('cart.update');
+Route::delete('/cart/{cartItem}', [CartController::class, 'destroy'])->name('cart.destroy');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -54,4 +61,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'verified', IsPerson
         'users' => UserController::class,
         'statuses' => StatusController::class,]);
 });
+Route::get('/kategorijos', [CategoryController::class, 'index'])->name('kategorijos.index');
+Route::get('/produktai', [ProductController::class, 'index'])->name('produktai.index');
 require __DIR__.'/auth.php';

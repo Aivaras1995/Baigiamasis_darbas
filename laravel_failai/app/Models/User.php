@@ -109,4 +109,8 @@ class User extends Authenticatable
         return in_array($this->role,
             [self::ROLE_ADMIN, self::ROLE_MANAGER, self::ROLE_PM]);
     }
+    public function cartItems()
+    {
+        return $this->hasMany(CartItem::class);
+    }
 }

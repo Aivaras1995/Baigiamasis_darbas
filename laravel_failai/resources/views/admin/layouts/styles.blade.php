@@ -85,6 +85,9 @@
         font-family: 'Cherry Swash',cursive;
         font-weight: bold;
     }
+    h2 {
+        left: 50%;
+    }
 
     p {
         position: absolute;
@@ -112,7 +115,7 @@
     footer {
         background-color: #333333;
         color: #ffffff;
-        padding: 20px 0;
+        padding: 1px ;
         text-align: left;
         bottom: 0;
         width: 100%;
@@ -150,7 +153,7 @@
     table tr {
         background-color: #f8f8f8;
         border: 1px solid #ddd;
-        padding: .35em;
+        padding: .135em;
     }
 
     table th,
@@ -164,53 +167,58 @@
         letter-spacing: .1em;
         text-transform: uppercase;
     }
-
-    @media screen and (max-width: 600px) {
-        table {
-            border: 0;
-        }
-
-        table caption {
-            font-size: 1.3em;
-        }
-
-        table thead {
-            border: none;
-            clip: rect(0 0 0 0);
-            height: 1px;
-            margin: -1px;
-            overflow: hidden;
-            padding: 0;
-            position: absolute;
-            width: 1px;
-        }
-
         table tr {
-            border-bottom: 3px solid #ddd;
-            display: block;
-            margin-bottom: .625em;
-        }
-
-        table td {
             border-bottom: 1px solid #ddd;
-            display: block;
-            font-size: .8em;
-            text-align: right;
+            padding: .35em;
         }
 
-        table td::before {
-            /*
-            * aria-label has no advantage, it won't be read inside a table
-            content: attr(aria-label);
-            */
-            content: attr(data-label);
-            float: left;
-            font-weight: bold;
+        table th,
+        table td {
+            padding: .725em;
+            text-align: left;
+        }
+
+        table th {
+            background-color: #f8f8f8;
+            font-size: .85em;
+            letter-spacing: .1em;
             text-transform: uppercase;
+            font-weight: bold;
+            border-bottom: 2px solid #ddd;
         }
-
-        table td:last-child {
-            border-bottom: 0;
-        }
+    .table-container {
+        display: flex;
+        justify-content: space-between;
+        padding-left: 170px; /* Atstumas nuo kairiojo krašto */
+        padding-right: 10px;
+        padding-top: 15px;
+        gap: 1px;
     }
+    .table-wrapper {
+        flex-basis: 30%;
+        box-sizing: border-box;
+
+        width: 50%; /*!* Nustatomas fiksuotas plotis *!*/
+    }
+    table th:nth-child(1),
+    table td:nth-child(2) {
+        width: 5%;
+    }
+
+    .users-table {
+        width: 122%; /* Lentelės plotis  */
+    }
+
+    .users-table th,
+    .users-table td {
+        /* Stilius skirtas tik Vartotojų lentelės stulpeliams */
+        padding: 44px; /* Tarpas tarp stulpelių */
+    }
+    .products-table {
+        margin-left: 53px;/*  poslinkis į dešinę */
+        height: calc(100vh - 200px); /* keiskite šią reikšmę pagal tai, kaip ilgą lentelę norite turėti */
+
+
+    }
+
 </style>
