@@ -16,4 +16,5 @@ class UsersController extends Controller
         return view('user_dashboard', compact('categories', 'products', 'cartItems'));
     }
 
+
 }

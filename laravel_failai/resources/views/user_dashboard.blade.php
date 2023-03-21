@@ -7,12 +7,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    @include('public.layouts.styles')
-
+@include('public.layouts.styles')
 </head>
 <body>
 @include('public.layouts.header')
+<div class="container mt-4">
+    <form action="{{ route('search') }}" method="GET">
+        <div class="input-group mb-4">
+            <input type="text" name="search" class="form-control" placeholder="Ieškoti prekės...">
+            <button type="submit" class="btn btn-primary">Ieškoti</button>
+        </div>
+    </form>
+</div>
 
 <div class="container mt-4">
     <h2 class="text-center mb-4">Sporto prekės</h2>
@@ -20,7 +26,7 @@
         @foreach($products as $product)
             <div class="col-md-4 mb-4">
                 <div class="card h-100">
-                    <img src="{{ $product->image }}" alt="{{ $product->image }}" class="card-img-top img-fluid">
+                    <img src="{{ asset($product->image) }}" alt="{{ $product->name }}" class="card-img-top img-fluid product-image">
                     <div class="card-body">
                         <h4 class="card-title">{{ $product->name }}</h4>
                         <p class="card-text">{{ $product->description }}</p>
@@ -31,7 +37,7 @@
                     </div>
                 </div>
             </div>
-            @if ($loop->iteration % 3 == 0 && !$loop->last)
+            @if ($loop->iteration % 3 == 0 && !$loop->last)//tikrina, ar dabartinis produktas yra trečias šioje eilutėje ir ar dar yra produktų sąraše po šio.
     </div>
     <div class="row">
         @endif

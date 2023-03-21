@@ -18,10 +18,12 @@ class IsPersonnel
      */
     public function handle(Request $request, Closure $next): Response|RedirectResponse
     {
-        if (!auth()->user()?->isPersonnel()) {
-            return redirect()->route('home')->with('error', __('messages.not_personnel'));
+        if (!auth()->user()?->isPersonnel()) {//sąlyga patikrina, ar prisijungęs vartotojas yra "personnel".
+            return redirect()->route('home')->with('error', __('Neturite leidimo prisijungti prie šio puslapio'));//Jei vartotojas nėra "personnel",
+            // ši eilutė nukreipia vartotoją į namų puslapį
         }
 
-        return $next($request);
+        return $next($request);//Jei vartotojas yra "personnel",
+        // ši eilutė perduoda užklausą į kitą middleware sluoksnį arba kontrolerį
     }
 }

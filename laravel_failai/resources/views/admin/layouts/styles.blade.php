@@ -5,7 +5,7 @@
         justify-content: space-between;
         align-items: center;
         padding: 20px;
-    }
+    }/*kodas admin.layouts.header daliai*/
     nav {
         margin: 0;
         position: absolute;
@@ -37,7 +37,7 @@
         background-color: #2BD6B4;
         border-radius: 1px;
     }
-
+/*Meniu panelės animacija ir stilius*/
     a:nth-child(1) {
         width: 100px;
 
@@ -75,7 +75,7 @@
     a:nth-child(12) {
         width: 120px;
     }
-
+/*Meniu panelėje esančiu objektu dydis*/
     h1 {
         position: absolute;
         top: 10px;

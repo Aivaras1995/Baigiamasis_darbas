@@ -14,7 +14,8 @@ class PersonManager
 {
     public function createPerson(Request $request): Person //metodas priima request argumenta (HTTP užklausa)
     {
-        DB::beginTransaction();
+        DB::beginTransaction(); //leidžia atikti keletą pakeitimų db
+        // ir juos atvaizduoti kaip viena logiska vieneta
 
         $user = User::create([ //Sukuriamas naujas "User" objektas, naudojant $request duomenis
             'name' => $request->get('name'),

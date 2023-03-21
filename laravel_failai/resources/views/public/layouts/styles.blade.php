@@ -1,8 +1,5 @@
 <style>
-    .header{
-
-    }
-    .custom-table {
+        .custom-table {
         width: 100%;
         border-collapse: collapse;
     }
@@ -26,5 +23,11 @@
         position: fixed;
         font-size: 20px;
     } /*User puslapio footerio stilius*/
+    .product-image {
+        width: 100%;
+        max-width: 200px;
+        height: auto;
+        object-fit: cover;
+    }/*paveikliuku esanciu user_dashboard stilius*/
 </style>
 

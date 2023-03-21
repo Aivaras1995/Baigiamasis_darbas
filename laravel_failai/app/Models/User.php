@@ -91,7 +91,8 @@ class User extends Authenticatable
     }
     public function isAdmin(): bool
     {
-        return $this->role === self::ROLE_ADMIN;
+        return $this->role === self::ROLE_ADMIN;//tikrina, ar dabartinio vartotojo rolė yra lygi self::ROLE_ADMIN konstantai. Jei taip, tai reiškia, kad vartotojas yra administratorius,
+        // ir funkcija grąžina true. Priešingu atveju, grąžina false.
     }
 
     public function isManager(): bool
