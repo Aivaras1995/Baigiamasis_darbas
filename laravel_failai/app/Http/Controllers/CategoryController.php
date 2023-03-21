@@ -10,6 +10,6 @@ class CategoryController
     public function index()
     {
         $categories = Category::all();
-        return view('categories.index', compact('categories'));
+        return view('public.categories.index', compact('categories'));
     }
 }

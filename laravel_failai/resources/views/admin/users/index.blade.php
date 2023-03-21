@@ -2,22 +2,24 @@
 
 @section('content')
 
-    <h1>Vartotojų sąrašas</h1>
+    <h2>Vartotojų sąrašas</h2>
 
     @include('admin.layouts.styles')
+    @include('admin.layouts.button_styles')
+
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
     <a href="{{route('users.create')}}" class="waves-effect waves-light btn">{{__('Pridėti naują vartotoją')}}</a>
     <table>
         <thead>
         <tr>
             <th>ID</th>
-            <th>{{__('users.name')}}</th>
-            <th>{{__('users.role')}}</th>
-            <th>{{__('users.email')}}</th>
-            <th>{{__('users.email_verified_at')}}</th>
-            <th>{{__('general.created_at')}}</th>
-            <th>{{__('general.updated_at')}}</th>
-            <th>{{__('general.actions')}}</th>
+            <th>{{__('Vartotojo vardas')}}</th>
+            <th>{{__('Rolė')}}</th>
+            <th>{{__('El.paštas')}}</th>
+            <th>{{__('Vartotojo verifikacijos data')}}</th>
+            <th>{{__('Vartotojas sukurtas')}}</th>
+            <th>{{__('Vartotojas atnaujintas')}}</th>
+            <th>{{__('Veiksmai')}}</th>
         </tr>
         </thead>
         <tbody>
@@ -30,6 +32,14 @@
                 <td>{{$user->email_verified_at}}</td>
                 <td>{{$user->created_at}}</td>
                 <td>{{$user->updated_at}}</td>
+                <td>
+                    <a href="{{route('users.edit', $user->id)}}" class="btn btn-primary">Redaguoti</a>
+                    <form action="{{route('users.destroy', $user->id)}}" method="post">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger">Ištrinti</button>
+                    </form>
+                </td>
             </tr>
         @endforeach
         </tbody>

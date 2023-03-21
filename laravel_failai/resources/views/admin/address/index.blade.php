@@ -4,7 +4,9 @@
 
     <h2>Adresų sąrašas</h2>
 
+{{--
     @include('admin.layouts.styles')
+--}}
     @include('admin.layouts.button_styles')
 
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">

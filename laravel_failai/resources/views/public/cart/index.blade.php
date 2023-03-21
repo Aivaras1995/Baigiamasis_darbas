@@ -19,6 +19,7 @@
             <th>Kaina</th>
             <th>Kiekis</th>
             <th>Viso</th>
+            <th>Veiksmai</th>
         </tr>
         </thead>
         <tbody>
@@ -28,6 +29,13 @@
                 <td>{{ $item->product->price }} &euro;</td>
                 <td>{{ $item->quantity }}</td>
                 <td>{{ $item->product->price * $item->quantity }} &euro;</td>
+                <td>
+                    <form action="{{ route('cart.destroy', $item->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger">Ištrinti</button>
+                    </form>
+                </td>
             </tr>
         @endforeach
         </tbody>
@@ -39,3 +47,4 @@
 </body>
 </html>
 @endsection
+

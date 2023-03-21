@@ -2,9 +2,11 @@
 
 @section('content')
 
-    <h1>Sporto prekių kategorijų sąrašas</h1>
+    <h2>Sporto prekių kategorijų sąrašas</h2>
 
     @include('admin.layouts.styles')
+    @include('admin.layouts.button_styles')
+
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
 
     <div class="category-list">

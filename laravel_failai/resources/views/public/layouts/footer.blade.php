@@ -1,5 +1,17 @@
-<footer class="bg-light mt-4">
-    <div class="container py-3">
-        <p class="text-center">&copy; 2023. Visos teisės saugomos.</p>
+<footer>
+    @include('public.layouts.styles')
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <p>&copy; 2023 Sportuok.lt</p>
+            </div>
+            <div class="col-md-6">
+                <ul class="list-inline">
+                    <li class="list-inline-item"><a href="#">Apie mus</a></li>
+                    <li class="list-inline-item"><a href="#">Kontaktai</a></li>
+                    <li class="list-inline-item"><a href="#">Privatumo politika</a></li>
+                </ul>
+            </div>
+        </div>
     </div>
 </footer>

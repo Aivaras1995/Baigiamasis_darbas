@@ -61,6 +61,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'verified', IsPerson
         'users' => UserController::class,
         'statuses' => StatusController::class,]);
 });
-Route::get('/kategorijos', [CategoryController::class, 'index'])->name('kategorijos.index');
-Route::get('/produktai', [ProductController::class, 'index'])->name('produktai.index');
+Route::get('/products', [ProductController::class, 'index'])->name('user.products.index');
+Route::get('/products/{product}', [ProductController::class, 'show'])->name('user.products.show');
+Route::get('/categories', [CategoryController::class, 'index'])->name('user.categories.index');
 require __DIR__.'/auth.php';

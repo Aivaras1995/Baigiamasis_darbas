@@ -4,10 +4,12 @@
 
 @section('content')
     @include('admin.layouts.styles')
+    @include('admin.layouts.button_styles')
+
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
     <div class="row">
         <div class="col s12">
-            <h1>Products</h1>
+            <h2>Asmenys</h2>
             <a href="{{route('persons.create')}}" class="btn btn-primary">Sukurti vartotojo profilį</a>
             <table class="table">
                 <thead>
@@ -19,13 +21,12 @@
                     <th>Telefono Numeris</th>
                     <th>Vartotojo ID</th>
                     <th>Adreso ID</th>
-
+                    <th>Veiksmai</th>
                 </tr>
                 </thead>
                 <tbody>
                 @foreach($persons as $person)
                     <tr>
-                        <td>{{$person->id}}</td>
                         <td>{{$person->name}}</td>
                         <td>{{$person->surname}}</td>
                         <td>{{$person->personal_code}}</td>

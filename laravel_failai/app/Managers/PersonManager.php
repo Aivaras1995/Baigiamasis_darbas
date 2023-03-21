@@ -12,22 +12,23 @@ use Illuminate\Support\Str;
 
 class PersonManager
 {
-    public function createPerson(Request $request): Person
+    public function createPerson(Request $request): Person //metodas priima request argumenta (HTTP užklausa)
     {
         DB::beginTransaction();
 
-        $user = User::create([
+        $user = User::create([ //Sukuriamas naujas "User" objektas, naudojant $request duomenis
             'name' => $request->get('name'),
             'email' => $request->get('email'),
-            'password' => Hash::make(Str::random(8)),   // random password
+            'password' => Hash::make(Str::random(8)),   //  Slaptažodis užšifruojamas
         ]);
 
-        $personArray = $request->all() + ['user_id' => $user->id];
+        $personArray = $request->all() + ['user_id' => $user->id];//Gauti visi $request duomenys ir pridėti naujojo vartotojo ID.
+        // Sujungti duomenys priskiriami $personArray kintamajam.
 
-        $person = Person::create($personArray);
+        $person = Person::create($personArray);//Sukuriamas naujas "Person" objektas, naudojant $personArray duomenis.
 
-        DB::commit();
+        DB::commit();//Naujasis "Person" objektas yra išsaugomas duomenų bazėje.
 
-        return  $person;
+        return  $person;//gražinamas sukurtas person objektas
     }
 }

@@ -7,7 +7,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-@include('public.layouts.styles')
+
+    @include('public.layouts.styles')
 
 </head>
 <body>
@@ -16,21 +17,28 @@
 <div class="container mt-4">
     <h2 class="text-center mb-4">Sporto prekės</h2>
     <div class="row">
-        <div class="col-md-4">
-            <img src="https://example.com/image1.jpg" alt="Prekė 1" class="img-fluid">
-        </div>
-        <div class="col-md-4">
-            <img src="https://example.com/image2.jpg" alt="Prekė 2" class="img-fluid">
-        </div>
-        <div class="col-md-4">
-            <img src="https://example.com/image3.jpg" alt="Prekė 3" class="img-fluid">
-        </div>
+        @foreach($products as $product)
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <img src="{{ $product->image }}" alt="{{ $product->image }}" class="card-img-top img-fluid">
+                    <div class="card-body">
+                        <h4 class="card-title">{{ $product->name }}</h4>
+                        <p class="card-text">{{ $product->description }}</p>
+                        <p><strong>Spalva:</strong> {{ $product->color }}</p>
+                        <p><strong>Dydis:</strong> {{ $product->size }}</p>
+                        <p><strong>Kaina:</strong> {{ $product->price }} €</p>
+                        <a href="{{ url('product', $product->slug) }}" class="btn btn-primary">Peržiūrėti prekę</a>
+                    </div>
+                </div>
+            </div>
+            @if ($loop->iteration % 3 == 0 && !$loop->last)
+    </div>
+    <div class="row">
+        @endif
+        @endforeach
     </div>
 </div>
 @include('public.layouts.footer')
-
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
 </body>
 </html>
 @endsection

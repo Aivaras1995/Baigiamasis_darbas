@@ -37,15 +37,16 @@ class Address extends Model
         'additional_info',
         'user_id',
     ];
-    public function user()
+    public function user() //funkcija apibrėžia santykį tarp "Address" ir "User" modelių.
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class); //nurodoma, kad kiekvienas adresas priklauso vienam vartotojui.
     }
-    public function __toString(): string
+    public function __toString(): string //funkcija apibrėžia, kaip "Address" objektas bus konvertuojamas į tekstą,
     {
-        return implode(
+        return implode( //funkcija skirta sujungti adresų duomenis į vieną eilutę
             ' ',
-            array_filter([
+            array_filter([ //funkcija naudojama pašalinti tuščias reikšmes iš masyvo.
+                // Tai grąžina pilną adresą kaip tekstą.
                 $this->street,
                 $this->house_number,
                 $this->apartment_number,

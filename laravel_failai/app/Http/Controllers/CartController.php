@@ -9,11 +9,12 @@ class CartController extends Controller
 {
     public function index()
     {
-        $cartItems = auth()->user()->cartItems;
+        $cartItems = auth()->user()->cartItems;//gaunami visi krepšelio elementai, susieti su prisijungusiu vartotoju
         return view('public.cart.index', compact('cartItems'));
     }
 
-    public function store(Request $request, $productId)
+    public function store(Request $request, $productId)//metodas prideda naują prekę į vartotojo krepšelį arba
+        // padidina esamo krepšelio elemento kiekį, jei prekė jau yra krepšelyje.
     {
         $user = auth()->user();
         $cartItem = $user->cartItems()->where('product_id', $productId)->first();
@@ -33,10 +34,12 @@ class CartController extends Controller
 
     public function update(Request $request, $cartItemId)
     {
-        $cartItem = CartItem::findOrFail($cartItemId);
-        $cartItem->update(['quantity' => $request->quantity]);
+        $cartItem = CartItem::findOrFail($cartItemId);//Surandama prekė krepšelyje pagal ID.
 
-        return redirect()->back()->with('success', 'Krepšelio prekės kiekis atnaujintas');
+        $cartItem->update(['quantity' => $request->quantity]);//Atnaujinamas prekės kiekis krepšelyje.
+
+
+        return redirect()->back()->with('success', 'Krepšelio prekės kiekis atnaujintas');//Nukreipiamas vartotojas atgal į ankstesnį puslapį su sėkmės pranešimu.
     }
     public function destroy($cartItemId)
     {

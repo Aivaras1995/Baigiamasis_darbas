@@ -26,7 +26,7 @@
 
         </fieldset>
 
-        <button type="submit">Create Address</button>
+        <button type="submit">Sukurti kategoriją</button>
         @csrf
     </form>
 @endsection

@@ -2,9 +2,11 @@
 
 @section('content')
 
-    <h1>Mokėjimų sąrašas</h1>
+    <h2>Mokėjimų sąrašas</h2>
 
     @include('admin.layouts.styles')
+    @include('admin.layouts.button_styles')
+
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
 
     <div class="payment-list">

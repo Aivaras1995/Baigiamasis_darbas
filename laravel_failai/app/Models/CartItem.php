@@ -19,8 +19,8 @@ class CartItem extends Model
     {
         return $this->belongsTo(Product::class);
     }
-    public function cartItems()
+    public function cartItems() //viešas metodas, kuris apibrėžia ryšį tarp dviejų modelių.
     {
-        return $this->hasMany(CartItem::class);
+        return $this->hasMany(CartItem::class);// vienas "Useris gali turėti daug "CartItem" objektų
     }
 }

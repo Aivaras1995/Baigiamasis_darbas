@@ -36,7 +36,7 @@ class ProductsController extends Controller
 
     public function edit(Product $product)
     {
-        return view('products.edit', compact('product'));
+        return view('admin.products.edit', compact('product'));
     }
     public function update(ProductRequest $request, Product $product)
     {

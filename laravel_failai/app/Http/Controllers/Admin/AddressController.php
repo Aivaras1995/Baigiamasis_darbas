@@ -14,7 +14,8 @@ class AddressController extends Controller
     {
         $addresses = Address::all();
 
-        return view('admin.address.index', compact('addresses'));    }
+        return view('admin.address.index', compact('addresses'));//gražinamas  blade'as
+    }
 
     public function create()
     {

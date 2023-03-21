@@ -24,7 +24,7 @@ class PersonRequest extends FormRequest
         return [
             'name' => ['required', 'string', 'min:3', 'max:255'],
             'surname' => ['required', 'string', 'min:3', 'max:255'],
-            'personal_code' => ['nullable', 'string', 'min:3', 'max:255'],
+            'personal_code' => ['nullable', 'string', 'min:11', 'max:11'],
             'email' => ['required', 'email'],
             'phone' => ['nullable', 'string', 'min:4', 'max:255'],
         ];

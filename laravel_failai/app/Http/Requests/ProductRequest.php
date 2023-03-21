@@ -43,7 +43,7 @@ class ProductRequest extends FormRequest
     public function messages():array
     {
         return [
-            'name.required' => 'Privalomas produkto pavadinimas',
+            'name.required' => 'Product name is required',
             'name.string' => 'Pavadinima turi sudaryti lotyniški simboliai',
             'name.min' => 'Minimalus pavadinimo ilgis privalo būti :min simboliai',
             'name.max' => 'Maximalus pavadinimo ilgis privalo būti :max simboliai',
